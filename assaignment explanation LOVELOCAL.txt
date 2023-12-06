@@ -1,0 +1,210 @@
+This Java code aims to find the length of the last word in a given string. Let's break down the logic and algorithm
+
+import java.util.*;
+public class main {
+    public int lengthOfLastWord(final String a)
+    {
+        int len = 0;
+ 
+        /* String a is 'final'-- can not be modified
+           So, create a copy and trim the spaces from
+           both sides */
+        String x = a.trim();
+ 
+        for (int i = 0; i < x.length(); i++) {
+            if (x.charAt(i) == ' ')
+                len = 0;
+            else
+                len++;
+        }
+ 
+        return len;
+    }
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+        String input = "";
+        Scanner sc = new Scanner(System.in);
+        input=sc.nextLine();
+        main obj = new main();
+        System.out.println("The length of last word is "+ obj.lengthOfLastWord(input));
+    }
+}
+
+1 lengthOfLastWord method:
+  
+-->This function accepts a string as an input and outputs an integer indicating how long the string's final word is.
+-->In order to track the length of the last word, it initializes and sets the variable len to 0.
+-->Using the trim() method, it makes a copy of the input string with the name x and removes any leading and trailing spaces. In x is where the 
+trimmed string is kept.
+
+2.Loop through the trimmed string:
+
+-->It iterates through the characters of the trimmed string x using a for loop.
+-->If the current character is a space (' '), it resets the len variable to 0, effectively starting the count for a new word.
+-->If the current character is not a space, it increments the len variable, indicating the continuation of the current word.
+
+3.Return the length of the last word:
+
+-->The method then returns the value of the last word in the input string, len, which is stored in the variable.
+
+4.main method:
+
+-->The main method asks the user to use a scanner to input a string.
+-->Using the user-input string as an argument, it calls the lengthOfLastWord method and creates an instance of the main class—a name that is not 
+advised due to a conflict with the main method.
+-->Subsequently, the output string's final word length is printed.
+
+But there might be a problem with the lengthOfLastWord method's reasoning. While iterating, it accurately counts the final word's length; however, 
+it only returns the length of the final word that came into play—not the final word itself. For instance, it will return 5 (the length of "World") 
+if the input is "Hello World," but it won't return the word itself. You may need to change the method so that it remembers the last word encountered 
+and returns that word, rather than just its length, if you require the actual word.
+
+medium
+
+This code aims to find the majority element(s) in an array. A majority element is one that appears more than ⌊n/3⌋ times in an array of size
+'n' (where ⌊ ⌋ denotes the floor function).
+
+CODE:
+import java.util.*;
+public class medium2 {
+    
+    static void findMajority(int arr[], int n)
+	{
+		
+
+        int flag=0;
+
+        
+            System.out.println("searchng for majority element");
+		for (int i = 0; i < n; i++) {
+			int count = 0;
+			for (int j = i; j < n; j++) {
+				if (arr[i] == arr[j])
+					count++;
+			}
+
+			// if count is greater than n/3 means
+			// current element is majority element
+			if (count > n/3) {
+			
+                                System.out.println(arr[i]+" ");
+				flag=1;
+			}
+		}
+
+		// if flag is 0 means there is no
+		// majority element is present
+		if (flag==0)
+			System.out.println("No Majority Element");
+            
+
+	}
+
+	public static void main (String[] args) {
+            
+                System.out.println("enter the length of array");
+                Scanner sc= new Scanner(System.in);
+                 int size=sc.nextInt();
+                int arr[] = new int[size];
+                
+               for (int i = 0; i <size ; i++) {
+                   
+                    arr[i]=sc.nextInt();
+                
+            }            
+		
+		int n = arr.length;
+		findMajority(arr, n);
+	}    
+}
+
+
+1.findMajority method
+
+-->The parameters for this method are an array called arr and its size, n.
+-->It uses two nested loops to iterate over the array:
+-->Every element in the array is iterated through by the outer loop (for i).
+-->From the current index i to the array's end, the inner loop (for j) counts the instances of the element arr[i] in the array.
+-->It counts the occurrences of each element in the array and determines whether the count is greater than n/3.
+-->An element is printed as a potential majority element and the flag is set to 1 if its count is greater than n/3.
+
+2.Main method (main):
+
+-->After asking the user to enter the array's length (size), it inputs the array's elements appropriately.
+-->With the input array arr and its length n, it invokes the findMajority function.
+-->Elements that occur in the array more than ⌊n/3⌋ times are identified by the code logic, which then outputs those elements as 
+   possible majority elements. This code might not, however, address every scenario in which there are several majority elements.
+
+The time complexity of this algorithm is O(n^2) due to the nested loops. For larger arrays, this approach might not be efficient.
+
+Furthermore, not all situations in which there might be more than one majority element or instances in which there isn't a majority 
+element are covered by the code. Only elements that occur in the array more than ⌊n/3⌋ times are found and printed.
+
+HARD 3
+
+This Java code is aimed at counting the occurrence of the digit '1' from numbers starting from 1 up to a given number 'n'. Let's break down the logic and algorithm of the code:
+
+CODE:
+import java.util.*;
+
+public class hard3 {
+    
+  static int countDigitOne(int n)
+{
+    int countr = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        String str = String.valueOf(i);
+        countr += str.split("1", -1) . length - 1;
+    }
+    return countr;
+}
+ 
+// Driver Code
+public static void main(String[] args)
+{
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter the Number to SEarch for Total number of ones");
+    int n = sc.nextInt();
+    System.out.println("The Count of one's till the Given Number is "+countDigitOne(n));
+   
+}
+    
+    
+}
+
+1.countDigitOne method:
+
+-->This method takes as input an integer n and attempts to count the occurrences of the digit '1' in numbers ranging from 1 to n.
+-->It creates a variable countr to keep track of the number of times '1' appears.
+-->It goes through a loop from 1 to n.
+ -->  Inside the loop
+         --> To manipulate the digits, converts the integer i to a string using String.valueOf(i).
+         str.split("1", -1) splits the string by the digit '1' and subtracts 1 from the length of the resulting array to count the occurrences of '1'. 
+         Split() uses the -1 parameter to ensure that trailing empty strings are included in the resulting array.
+         The count of occurrences of '1' is accumulated in the countr variable.
+
+2.main method:
+
+-->The main method prompts the user to enter a number (n) to calculate the count of occurrences of '1' from 1 to that number.
+-->Scanner is used to read the user-input number.
+-->With the input number n, this method calls the countDigitOne method and prints the number of occurrences of '1' until that given number.
+
+This code counts the number of times the digit '1' appears from 1 to the given number n. It should be noted, however, that converting integers to strings and 
+splitting them may not be the most efficient way to count occurrences of '1', especially for larger numbers.
+
+The time complexity of this code is approximately O(n * log10(n)) because it loops from 1 to n and for each i,it converts it to a string which has a logarithmic 
+relationship with the number of digits in i. For very large values of n, this approach might not be efficient. There 
+are more optimized algorithms to count the occurrences of '1' digits in a range which doesn't require string manipulation.
+
+
+
+
+
+
+
+
+
+
