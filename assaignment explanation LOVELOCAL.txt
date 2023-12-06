@@ -1,5 +1,6 @@
+EASY 1
 This Java code aims to find the length of the last word in a given string. Let's break down the logic and algorithm
-
+CODE:
 import java.util.*;
 public class main {
     public int lengthOfLastWord(final String a)
@@ -61,7 +62,7 @@ it only returns the length of the final word that came into play—not the final
 if the input is "Hello World," but it won't return the word itself. You may need to change the method so that it remembers the last word encountered 
 and returns that word, rather than just its length, if you require the actual word.
 
-medium
+medium 2
 
 This code aims to find the majority element(s) in an array. A majority element is one that appears more than ⌊n/3⌋ times in an array of size
 'n' (where ⌊ ⌋ denotes the floor function).
